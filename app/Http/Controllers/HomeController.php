@@ -18,7 +18,7 @@ class HomeController extends Controller
         $invoice = Invoice::inRandomOrder()->first();
         return view('welcome', ['invoice' => $invoice]);
         session()->forget('invoice_id');
-        session()->forget('invoice_amount');  // I also this line in other place and call from it as helper.php
+        session()->forget('invoice_amount');  // I also write this line in other place and call from it as helper.php
     }
 
     public function checkout(Invoice $invoice)
@@ -56,7 +56,7 @@ class HomeController extends Controller
             } elseif ($invoiceAmount < $card->amount) {
 
                 Payment::create([
-                    'user_id' => 1,  // Assuming you have not authenticated the user yet
+                    'user_id' => 1,  // Has not authenticated user yet
                     'invoice_id' => $invoiceId,
                     'invoice_amount' => $invoiceAmount,
                     'payment_date' => $currentDate
